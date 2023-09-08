@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 
 public class SystemsLibraryWindow : OdinEditorWindow
 {
-    [MenuItem("My Game/My Window")]
+    [MenuItem("Systems Library/My Window")]
     private static void OpenWindow()
     {
         GetWindow<SystemsLibraryWindow>().Show();
