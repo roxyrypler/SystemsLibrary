@@ -5,7 +5,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using Sirenix.OdinInspector;
 
-public class SystemsLibraryWindow : OdinEditorWindow
+public class SystemsLibraryWindow : OdinMenuEditorWindow
 {
     [MenuItem("Systems Library/My Window")]
     private static void OpenWindow()
@@ -13,45 +13,29 @@ public class SystemsLibraryWindow : OdinEditorWindow
         GetWindow<SystemsLibraryWindow>().Show();
     }
 
-    [PropertyOrder(-10)]
-    [HorizontalGroup]
-    [Button(ButtonSizes.Large)]
-    public void SomeButton1() { }
+    protected override OdinMenuTree BuildMenuTree()
+    {
+        var tree = new OdinMenuTree();
+        tree.Selection.SupportsMultiSelect = false;
 
-    [HorizontalGroup]
-    [Button(ButtonSizes.Large)]
-    public void SomeButton2() { }
-
-    [HorizontalGroup]
-    [Button(ButtonSizes.Large)]
-    public void SomeButton3() { }
-
-    [HorizontalGroup]
-    [Button(ButtonSizes.Large), GUIColor(0, 1, 0)]
-    public void SomeButton4() { }
-
-    [HorizontalGroup]
-    [Button(ButtonSizes.Large), GUIColor(1, 0.5f, 0)]
-    public void SomeButton5() { }
-
-    [TableList]
-    public List<SomeType> SomeTableData;
+        //tree.Add("Settings", GeneralDrawerConfig.Instance);
+        //tree.Add("Utilities", new TextureUtilityEditor());
+        //tree.AddAllAssetsAtPath("Odin Settings", "Assets/Plugins/Sirenix", typeof(ScriptableObject), true, true);
+        return tree;
+    }
 }
 
-public class SomeType
+public class TextureUtilityEditor
 {
-    [TableColumnWidth(50)]
-    public bool Toggle;
+    [BoxGroup("Tool"), HideLabel, EnumToggleButtons]
+    public Tool Tool;
 
-    [AssetsOnly]
-    public GameObject SomePrefab;
+    public List<Texture> Textures;
 
-    public string Message;
+    [Button(ButtonSizes.Large), HideIf("Tool", Tool.Rotate)]
+    public void SomeAction() { }
 
-    [TableColumnWidth(160)]
-    [HorizontalGroup("Actions")]
-    public void Test1() { }
-
-    [HorizontalGroup("Actions")]
-    public void Test2() { }
+    [Button(ButtonSizes.Large), ShowIf("Tool", Tool.Rotate)]
+    public void SomeOtherAction() { }
 }
+
