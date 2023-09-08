@@ -1,0 +1,7 @@
+{
+  "name": "com.darkflight.systemslibrary",
+  "version": "1.0.0",
+  "description": "A library of systems for the game engine",
+  "displayName": "SystemsLibrary",
+  "dependencies": {}
+}
