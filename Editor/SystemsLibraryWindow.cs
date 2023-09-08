@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using Sirenix.OdinInspector;
+using SystemsLibrary;
 
 public class SystemsLibraryWindow : OdinMenuEditorWindow
 {
@@ -18,6 +19,7 @@ public class SystemsLibraryWindow : OdinMenuEditorWindow
         var tree = new OdinMenuTree();
         tree.Selection.SupportsMultiSelect = false;
 
+        tree.Add("Economy", new EconomyInternal());
         //tree.Add("Settings", GeneralDrawerConfig.Instance);
         //tree.Add("Utilities", new TextureUtilityEditor());
         //tree.AddAllAssetsAtPath("Odin Settings", "Assets/Plugins/Sirenix", typeof(ScriptableObject), true, true);
