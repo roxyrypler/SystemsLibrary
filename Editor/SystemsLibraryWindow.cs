@@ -5,7 +5,7 @@ namespace SystemsLibrary.Editor
 {
     public class SystemsLibraryWindow : OdinMenuEditorWindow
     {
-        [MenuItem("Systems Library/My Window")]
+        [MenuItem("Systems Library/Systems Editor")]
         private static void OpenWindow()
         {
             GetWindow<SystemsLibraryWindow>().Show();
