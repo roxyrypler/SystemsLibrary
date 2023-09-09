@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SystemsLibrary
+public class Economy : MonoBehaviour
 {
-    public class Economy : MonoBehaviour
-    {
-
-    }
+    public string hello;
 }
