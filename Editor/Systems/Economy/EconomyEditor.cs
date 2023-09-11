@@ -5,7 +5,7 @@ using SystemsLibrary.Runtime;
 
 namespace SystemsLibrary.Editor
 {
-    public class EconomyInternal
+    public class EconomyEditor
     {
 
         [Button]
