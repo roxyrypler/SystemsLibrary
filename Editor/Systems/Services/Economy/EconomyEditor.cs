@@ -39,9 +39,7 @@ namespace SystemsLibrary.Editor
             if (obj == null)
             {
                 GameObject EconomyObject = new GameObject("Economy");
-
-                Economy economyComponent = EconomyObject.AddComponent<Economy>();
-
+                EconomyObject.AddComponent<Economy>();
                 Undo.RegisterCreatedObjectUndo(EconomyObject, "Create Economy Object");
                 EconomyObject.transform.SetParent(systemsObject);
             } else

@@ -16,7 +16,8 @@ namespace SystemsLibrary.Editor
             var tree = new OdinMenuTree();
             tree.Selection.SupportsMultiSelect = false;
 
-            tree.Add("Economy", new EconomyEditor());
+            tree.Add("Services/Economy", new EconomyEditor());
+            tree.Add("AI", new AIEditor());
             return tree;
         }
     }
