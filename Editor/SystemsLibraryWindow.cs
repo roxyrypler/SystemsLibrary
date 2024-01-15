@@ -19,6 +19,7 @@ namespace SystemsLibrary.Editor
             tree.Add("Services/Economy", new EconomyEditor());
             tree.Add("AI", new AIEditor());
             tree.Add("UI", new UIEditor());
+            tree.Add("Components", new ComponentsEditor());
             return tree;
         }
     }
