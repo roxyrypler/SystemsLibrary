@@ -5,58 +5,65 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIEntity : MonoBehaviour
+namespace SystemsLibrary.AI
 {
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Hunger = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Energy = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Bladder = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Social = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Hygiene = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Comfort = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Tidiness = 100;
-    [ProgressBar(-100, 100, r: 0, g: 1, b: 0, Height = 20)]
-    public float Fun = 100;
-
-    private float HungerDeclineRate = 1;
-    private float EnergyDeclineRate = 1;
-    private float BladderDeclineRate = 1;
-    private float SocialDeclineRate = 1;
-    private float HygieneDeclineRate = 1;
-    private float ComfortDeclineRate = 1;
-    private float TidinessDeclineRate = 1;
-    private float FunDeclineRate = 1;
-
-    private float updateInterval = 0.1f; // Interval for updating motives (10 times per second)
-    private float timer = 0;
-
-    private void Update()
+    [Serializable]
+    public class MotiveData
     {
-        timer += Time.deltaTime;
-        if (timer >= updateInterval)
+        public string Name;
+        [PropertyRange(-100, 100)] public float Status; // Dynamic status
+        public float DecrimentalAmount;
+
+        public MotiveData(Motive motive)
         {
-            MotiveDegradation();
-            timer = 0;
+            Name = motive.Name;
+            Status = 0; // Initialize with default value
+            DecrimentalAmount = motive.DecrimentalAmount;
+        }
+
+        // Method to update status
+        public void UpdateStatus(float rateMultiplier)
+        {
+            if (Status > -100 && Status < 100)
+                Status -= DecrimentalAmount * rateMultiplier;
         }
     }
-
-    private void MotiveDegradation()
+    
+    public class AIEntity : MonoBehaviour
     {
-        float rateMultiplier = updateInterval; // Multiplier to adjust the decline rate per update
+        public List<Motive> Motives;
+        [ShowInInspector]
+        public List<MotiveData> MotiveData { get; private set; } = new ();
+    
+        private float updateInterval = 0.1f;
+        private float timer = 0;
 
-        Hunger -= HungerDeclineRate * rateMultiplier;
-        Energy -= EnergyDeclineRate * rateMultiplier;
-        Bladder -= BladderDeclineRate * rateMultiplier;
-        Social -= SocialDeclineRate * rateMultiplier;
-        Hygiene -= HygieneDeclineRate * rateMultiplier;
-        Comfort -= ComfortDeclineRate * rateMultiplier;
-        Tidiness -= TidinessDeclineRate * rateMultiplier;
-        Fun -= FunDeclineRate * rateMultiplier;
-    }
+        private void Start()
+        {
+            MotiveData.Clear();
+            foreach (Motive m in Motives)
+            {
+                MotiveData.Add(new MotiveData(m));
+            }
+        }
+
+        private void Update()
+        {
+            timer += Time.deltaTime;
+            if (timer >= updateInterval)
+            {
+                MotiveDegradation();
+                timer = 0;
+            }
+        }
+
+        private void MotiveDegradation()
+        {
+            float rateMultiplier = updateInterval;
+            foreach (MotiveData mData in MotiveData)
+            {
+                mData.UpdateStatus(rateMultiplier);
+            }
+        }
+    }   
 }
