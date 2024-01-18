@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -29,41 +28,94 @@ namespace SystemsLibrary.AI
         }
     }
     
+    [RequireComponent(typeof(GameObjectBoxTracker))]
+    [RequireComponent(typeof(NavMeshAgent))]
     public class AIEntity : MonoBehaviour
     {
         public List<Motive> Motives;
-        [ShowInInspector]
-        public List<MotiveData> MotiveData { get; private set; } = new ();
-    
-        private float updateInterval = 0.1f;
-        private float timer = 0;
+        [ShowInInspector] public List<MotiveData> MotiveData { get; private set; } = new ();
+        [ShowInInspector] public List<AIAction> availableActions;
+        [ShowInInspector] public AIAction currentAction;
+
+        [HideInInspector] public GameObjectBoxTracker goTracker;
+        [HideInInspector] public NavMeshAgent agent;
+        private float motiveUpdateInterval = 0.1f;
+        private float actionUpdateInterval = 1;
+        private float motiveTimer = 0;
+        private float actionTimer = 0;
 
         private void Start()
         {
-            MotiveData.Clear();
-            foreach (Motive m in Motives)
-            {
-                MotiveData.Add(new MotiveData(m));
-            }
+            goTracker = GetComponent<GameObjectBoxTracker>();
+            agent = GetComponent<NavMeshAgent>();
         }
 
         private void Update()
         {
-            timer += Time.deltaTime;
-            if (timer >= updateInterval)
+            motiveTimer += Time.deltaTime;
+            actionTimer += Time.deltaTime;
+            if (motiveTimer >= motiveUpdateInterval)
             {
-                MotiveDegradation();
-                timer = 0;
+                UpdateMotives();
+                motiveTimer = 0;
+            }
+            
+            if (actionTimer >= actionUpdateInterval)
+            {
+                FindActions();
+                actionTimer = 0;
             }
         }
 
-        private void MotiveDegradation()
+        private void UpdateMotives()
         {
-            float rateMultiplier = updateInterval;
+            float rateMultiplier = motiveUpdateInterval;
             foreach (MotiveData mData in MotiveData)
             {
                 mData.UpdateStatus(rateMultiplier);
             }
+        }
+
+        void FindActions()
+        {
+            availableActions.Clear();
+            List<GameObject> gosInRange = goTracker.PerformCast();
+            foreach (var go in gosInRange)
+            {
+                AIAction action = go.GetComponent<AIAction>();
+                if (action)
+                {
+                    availableActions.Add(action);
+                }
+            }
+
+            ChooseAction();
+        }
+        
+        void ChooseAction()
+        {
+            
+            //print("Action chooser timer");
+            AIAction bestAction = null;
+            float bestScore = float.MinValue;
+
+            foreach (var action in availableActions)
+            {
+                float score = action.EvaluateAction(this);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestAction = action;
+                }
+            }
+
+            if (bestAction != currentAction)
+            {
+                currentAction = bestAction;
+                // Optionally cancel the current action and start the new one
+            }
+
+            currentAction?.ExecuteAction(this);
         }
     }   
 }

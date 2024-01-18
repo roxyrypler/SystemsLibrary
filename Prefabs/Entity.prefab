@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5182238363992144487}
   - component: {fileID: 325276606888568755}
+  - component: {fileID: 6750814348022362317}
   - component: {fileID: 7136964477067822007}
   - component: {fileID: 8166096561592677825}
   - component: {fileID: 3227392490694772299}
@@ -132,8 +133,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f0ac70921664d15bda1797bf9f945f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 5
-  wanderTimer: 5
+  Motives:
+  - {fileID: 11400000, guid: ece2a395242a04143a26c04351dcbac8, type: 2}
+  availableActions: []
+  currentAction: {fileID: 0}
+  goTracker: {fileID: 6750814348022362317}
+--- !u!114 &6750814348022362317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704296854009627421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb25b4d0247c4a538f8ef0464c13740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxHalfExtents: {x: 4, y: 4, z: 4}
+  castDistance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  trackedObjects: []
 --- !u!33 &7136964477067822007
 MeshFilter:
   m_ObjectHideFlags: 0
