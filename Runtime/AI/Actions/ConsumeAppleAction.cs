@@ -1,8 +1,8 @@
-using UnityEngine.AI;
+using UnityEngine;
 
 namespace SystemsLibrary.AI.Actions
 {
-    public class FindFoodAction : AIAction
+    public class ConsumeAppleAction : AIAction
     {
         public override float EvaluateAction(AIEntity ai)
         {
@@ -27,6 +27,13 @@ namespace SystemsLibrary.AI.Actions
         {
             // Logic to find and consume food
             ai.agent.SetDestination(transform.position);
+            var distance = Vector3.Distance(transform.position, ai.transform.position);
+            print(distance);
+            if (distance <= 1)
+            {
+                ai.ClearCurrentAction();
+                Destroy(gameObject);
+            }
         }
     }
 }

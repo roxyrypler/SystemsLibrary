@@ -117,5 +117,10 @@ namespace SystemsLibrary.AI
 
             currentAction?.ExecuteAction(this);
         }
+
+        public void ClearCurrentAction()
+        {
+            currentAction = null;
+        }
     }   
 }
