@@ -16,15 +16,18 @@ namespace SystemsLibrary.AI
         public MotiveData(Motive motive)
         {
             Name = motive.Name;
-            Status = 0; // Initialize with default value
+            Status = motive.StartingAmount;
             DecrimentalAmount = motive.DecrimentalAmount;
         }
 
         // Method to update status
         public void UpdateStatus(float rateMultiplier)
         {
-            if (Status > -100 && Status < 100)
-                Status -= DecrimentalAmount * rateMultiplier;
+            // Update the status
+            Status -= DecrimentalAmount * rateMultiplier;
+
+            // Clamp the status to ensure it stays within the range of -100 to 100
+            Status = Mathf.Clamp(Status, -100, 100);
         }
     }
     
@@ -32,9 +35,10 @@ namespace SystemsLibrary.AI
     [RequireComponent(typeof(NavMeshAgent))]
     public class AIEntity : MonoBehaviour
     {
+        [Tooltip("Motive SOs")]
         public List<Motive> Motives;
-        [ShowInInspector] public List<MotiveData> MotiveData { get; private set; } = new ();
-        [ShowInInspector] public List<AIAction> availableActions;
+        [ShowInInspector] public List<MotiveData> MotiveData = new ();
+        [ShowInInspector] public Dictionary<AIAction, float> availableActions;
         [ShowInInspector] public AIAction currentAction;
 
         [HideInInspector] public GameObjectBoxTracker goTracker;
@@ -48,6 +52,8 @@ namespace SystemsLibrary.AI
         {
             goTracker = GetComponent<GameObjectBoxTracker>();
             agent = GetComponent<NavMeshAgent>();
+
+            SetupMotives();
         }
 
         private void Update()
@@ -67,6 +73,15 @@ namespace SystemsLibrary.AI
             }
         }
 
+        void SetupMotives()
+        {
+            MotiveData.Clear();
+            foreach (var motive in Motives)
+            {
+                MotiveData.Add(new MotiveData(motive));
+            }
+        }
+
         private void UpdateMotives()
         {
             float rateMultiplier = motiveUpdateInterval;
@@ -78,14 +93,32 @@ namespace SystemsLibrary.AI
 
         void FindActions()
         {
+            if (availableActions == null)
+            {
+                availableActions = new Dictionary<AIAction, float>();
+            }
+
             availableActions.Clear();
+
+            if (goTracker == null)
+            {
+                Debug.LogError("GameObjectBoxTracker is not set.");
+                return;
+            }
+
             List<GameObject> gosInRange = goTracker.PerformCast();
+            if (gosInRange == null)
+            {
+                Debug.LogError("gosInRange is null.");
+                return;
+            }
+
             foreach (var go in gosInRange)
             {
                 AIAction action = go.GetComponent<AIAction>();
-                if (action)
+                if (action != null)
                 {
-                    availableActions.Add(action);
+                    availableActions.Add(action, 0);
                 }
             }
 
@@ -94,16 +127,17 @@ namespace SystemsLibrary.AI
         
         void ChooseAction()
         {
-            
-            //print("Action chooser timer");
             AIAction bestAction = null;
             float bestScore = float.MinValue;
 
-            foreach (var action in availableActions)
+            List<AIAction> keys = new List<AIAction>(availableActions.Keys);
+
+            foreach (var action in keys)
             {
                 float score = action.EvaluateAction(this);
                 if (score > bestScore)
                 {
+                    availableActions[action] = score; // Update the value in the dictionary
                     bestScore = score;
                     bestAction = action;
                 }
@@ -121,6 +155,27 @@ namespace SystemsLibrary.AI
         public void ClearCurrentAction()
         {
             currentAction = null;
+        }
+        
+        // Causes and effects
+
+        void DecreaseEnergyWhenMoving()
+        {
+            // TODO
+        }
+        
+        // Debug functions
+
+        [Button]
+        void TakeDamage()
+        {
+            // TODO
+        }
+
+        [Button]
+        void MoveToRandomLocationInRange()
+        {
+            // TODO
         }
     }   
 }

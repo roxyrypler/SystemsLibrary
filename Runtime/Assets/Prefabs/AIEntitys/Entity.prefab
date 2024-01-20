@@ -135,9 +135,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Motives:
   - {fileID: 11400000, guid: ece2a395242a04143a26c04351dcbac8, type: 2}
-  availableActions: []
+  - {fileID: 11400000, guid: 275d1705c741346f7ae8fee9da99dde6, type: 2}
+  MotiveData: []
   currentAction: {fileID: 0}
   goTracker: {fileID: 6750814348022362317}
+  agent: {fileID: 0}
 --- !u!114 &6750814348022362317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb25b4d0247c4a538f8ef0464c13740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxHalfExtents: {x: 4, y: 4, z: 4}
+  boxHalfExtents: {x: 8, y: 4, z: 8}
   castDistance: 5
   layerMask:
     serializedVersion: 2

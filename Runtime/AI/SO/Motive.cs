@@ -7,6 +7,7 @@ namespace SystemsLibrary.AI
     public class Motive: ScriptableObject
     {
         public string Name;
+        [PropertyRange(-100, 100)] public float StartingAmount;
         [PropertyRange(0, 10)] public float DecrimentalAmount;
     }
 }
