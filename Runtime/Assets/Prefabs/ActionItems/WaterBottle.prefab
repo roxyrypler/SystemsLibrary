@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1988018799736693256}
   - component: {fileID: 7098329086175097706}
   - component: {fileID: 3284564144014483703}
-  - component: {fileID: 3828089642350063506}
+  - component: {fileID: 8068393836255383906}
   m_Layer: 0
   m_Name: WaterBottle
   m_TagString: Untagged
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hydrationMotive: {fileID: 11400000, guid: 275d1705c741346f7ae8fee9da99dde6, type: 2}
+  hydrationReward: 15
   priorityCurve:
     serializedVersion: 2
     m_Curve:
@@ -61,8 +62,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.59573245
-      value: 0.7376763
+      time: 0.2715137
+      value: 0.38228387
       inSlope: -1.4431953
       outSlope: -1.4431953
       tangentMode: 0
@@ -87,17 +88,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -1
-      outSlope: -1
+      inSlope: -2.5594816
+      outSlope: -2.5594816
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.2793658
+      value: 0.28496838
+      inSlope: -1.4774613
+      outSlope: -1.4774613
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1
-      outSlope: -1
+      inSlope: -0.3954411
+      outSlope: -0.3954411
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -155,7 +165,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3828089642350063506
+--- !u!135 &8068393836255383906
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

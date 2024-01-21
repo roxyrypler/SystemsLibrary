@@ -52,17 +52,24 @@ namespace SystemsLibrary.AI.Actions
 
         public override void ExecuteAction(AIEntity ai)
         {
-            /*
+            
             // Logic to find and consume food
             ai.agent.SetDestination(transform.position);
             var distance = Vector3.Distance(transform.position, ai.transform.position);
             print(distance);
             if (distance <= 1)
             {
+                MotiveData hungerMotive = ai.MotiveData.Find(m => m.Name == _hungerMotive.Name);
+                MotiveData hydrationMotive = ai.MotiveData.Find(m => m.Name == _hydrationMotive.Name);
+                if (hungerMotive == null || hydrationMotive == null)
+                    return; // Motive not found
+
+                hungerMotive.Status += hungerReward;
+                hydrationMotive.Status += hydrationReward;
                 ai.ClearCurrentAction();
                 Destroy(gameObject);
             }
-            */
+            
         }
     }
 }

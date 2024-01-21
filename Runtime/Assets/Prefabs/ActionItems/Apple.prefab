@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1299203466323549970}
   - component: {fileID: 2472783061595674384}
   - component: {fileID: 8556334005836756731}
-  - component: {fileID: 5746009198165334492}
+  - component: {fileID: 2393585459949696683}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hungerMotive: {fileID: 11400000, guid: ece2a395242a04143a26c04351dcbac8, type: 2}
   _hydrationMotive: {fileID: 11400000, guid: 275d1705c741346f7ae8fee9da99dde6, type: 2}
+  hungerReward: 20
+  hydrationReward: 15
   HungerPriorityCurve:
     serializedVersion: 2
     m_Curve:
@@ -61,6 +63,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.7769301
+      value: 0.65390337
+      inSlope: -1.4993005
+      outSlope: -1.4993005
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
@@ -86,6 +97,15 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.28924015
+      value: 0.36141178
+      inSlope: -1.497385
+      outSlope: -1.497385
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0
       inSlope: 0
@@ -103,17 +123,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.98632187
-      outSlope: -0.98632187
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0.09288824
     - serializedVersion: 3
+      time: 0.44938982
+      value: 0.008988589
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1231716
+    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.98963845
-      outSlope: -0.98963845
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.082728565
@@ -171,7 +200,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5746009198165334492
+--- !u!135 &2393585459949696683
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

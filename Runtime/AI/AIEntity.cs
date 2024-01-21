@@ -69,6 +69,7 @@ namespace SystemsLibrary.AI
             if (actionTimer >= actionUpdateInterval)
             {
                 FindActions();
+                ChooseAction();
                 actionTimer = 0;
             }
         }
@@ -121,8 +122,6 @@ namespace SystemsLibrary.AI
                     availableActions.Add(action, 0);
                 }
             }
-
-            ChooseAction();
         }
         
         void ChooseAction()

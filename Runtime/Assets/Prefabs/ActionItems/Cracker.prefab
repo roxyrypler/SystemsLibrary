@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1645402786850396210}
   - component: {fileID: 2677010275431812967}
   - component: {fileID: 4965694482631595573}
-  - component: {fileID: 314260186561710626}
+  - component: {fileID: 1306486603747202649}
   m_Layer: 0
   m_Name: Cracker
   m_TagString: Untagged
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hungerMotive: {fileID: 11400000, guid: ece2a395242a04143a26c04351dcbac8, type: 2}
+  hungerReward: 10
   priorityCurve:
     serializedVersion: 2
     m_Curve:
@@ -60,6 +61,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.7036692
+      value: 0.67388767
+      inSlope: -1.4945418
+      outSlope: -1.4945418
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
@@ -78,17 +88,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1
-      outSlope: -1
+      inSlope: -2
+      outSlope: -2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -146,7 +165,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &314260186561710626
+--- !u!135 &1306486603747202649
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
