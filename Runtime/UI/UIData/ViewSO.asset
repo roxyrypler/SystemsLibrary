@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4d52713257f4a69980aaa7b45abd0f, type: 3}
   m_Name: ViewSO
   m_EditorClassIdentifier: 
+  theme: {fileID: 11400000, guid: 0f68c404875624f3ead56d1c92544ed2, type: 2}
   padding:
     m_Left: 50
     m_Right: 50

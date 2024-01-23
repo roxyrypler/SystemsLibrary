@@ -43,6 +43,9 @@ public class View : MonoBehaviour
     {
         verticalLayoutGroup.padding = viewData.padding;
         verticalLayoutGroup.spacing = viewData.spacing;
+        imageTop.color = viewData.theme.Primary_bg;
+        imageCenter.color = viewData.theme.Secondary_bg;
+        imageBottom.color = viewData.theme.Tirtiary_bg;
     }
 
     private void OnValidate()
