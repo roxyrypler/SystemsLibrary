@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Serialization; // Required for Lists
+
+// Required for Lists
 
 public class GameObjectBoxTracker : MonoBehaviour
 {
