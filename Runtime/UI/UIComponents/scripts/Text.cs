@@ -1,16 +1,23 @@
-using UnityEngine;
+using Plugins.SystemsLibrary.Runtime.UI.Types.Enums;
+using Plugins.SystemsLibrary.Runtime.UI.UIComponents.scripts;
+using TMPro;
 
-public class Text : MonoBehaviour
+public class Text : CustomUIComponentBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TextSO textData;
+    public EThemeStyleSelector style;
 
-    // Update is called once per frame
-    void Update()
+    private TextMeshProUGUI textMeshProGui;
+    
+    public override void Setup()
     {
-        
+        textMeshProGui = GetComponentInChildren<TextMeshProUGUI>();
+    }
+    
+    public override void Configure()
+    {
+        textMeshProGui.color = textData.theme.GetTextColor(style);
+        textMeshProGui.font = textData.font;
+        textMeshProGui.fontSize = textData.size;
     }
 }

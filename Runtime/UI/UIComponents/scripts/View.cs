@@ -1,8 +1,10 @@
+using Plugins.SystemsLibrary.Runtime.UI.Types.Enums;
+using Plugins.SystemsLibrary.Runtime.UI.UIComponents.scripts;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 
-public class View : MonoBehaviour
+public class View : CustomUIComponentBase
 {
     public ViewSO viewData;
 
@@ -15,20 +17,8 @@ public class View : MonoBehaviour
     private Image imageBottom;
 
     private VerticalLayoutGroup verticalLayoutGroup;
-
-    private void Awake()
-    {
-        Init();
-    }
-
-    [Button("Configure Now")]
-    public void Init()
-    {
-        Setup();
-        Configure();
-    }
     
-    public void Setup()
+    public override void Setup()
     {
         verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
         imageTop = containerTop.GetComponent<Image>();
@@ -36,17 +26,12 @@ public class View : MonoBehaviour
         imageBottom = containerBottom.GetComponent<Image>();
     }
     
-    public void Configure()
+    public override void Configure()
     {
         verticalLayoutGroup.padding = viewData.padding;
         verticalLayoutGroup.spacing = viewData.spacing;
         imageTop.color = viewData.theme.Primary_bg;
         imageCenter.color = viewData.theme.Secondary_bg;
         imageBottom.color = viewData.theme.Tirtiary_bg;
-    }
-
-    private void OnValidate()
-    {
-        Init();
     }
 }
