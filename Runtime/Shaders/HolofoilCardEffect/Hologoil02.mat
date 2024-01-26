@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hologoil01
-  m_Shader: {fileID: 4800000, guid: cbd6d8fb229b94c74b2926be5b4f2f30, type: 3}
+  m_Name: Hologoil02
+  m_Shader: {fileID: 4800000, guid: c58bae5bb55eb458abdad54976f09b7f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HoloFoilTex:
-        m_Texture: {fileID: 2800000, guid: b92f151008a5547b890f14a57b229c08, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce04c6f9d987f47fe92917f73f48b94d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HoloTex:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8dde7913ccd5c427e8cd85c4bafcfeaa, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce04c6f9d987f47fe92917f73f48b94d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -72,6 +72,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RippleTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -87,13 +91,14 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HoloStrength: 0.652
-    - _Intensity: 0.5
+    - _Intensity: 0.17
     - _Metallic: 0.076
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Reflectivity: 0.515
-    - _Scale: 1
+    - _RippleIntensity: 1
+    - _Scale: 0.83
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -104,9 +109,9 @@ Material:
     - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 0, g: 1, b: 0, a: 1}
     - _Color3: {r: 0, g: 0, b: 1, a: 1}
-    - _ColorOne: {r: 0, g: 1, b: 0.0064702034, a: 1}
-    - _ColorThree: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorThree: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorTwo: {r: 0, g: 0.2231617, b: 1, a: 1}
+    - _ColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
