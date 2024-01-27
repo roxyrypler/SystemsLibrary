@@ -4,6 +4,7 @@ namespace Plugins.SystemsLibrary.Runtime.UI.Types.Enums
     {
         Primary,
         Secondary,
-        Tertiary
+        Tertiary,
+        CallToAction
     }
 }
