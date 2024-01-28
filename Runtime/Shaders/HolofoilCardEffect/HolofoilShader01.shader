@@ -9,6 +9,8 @@ Shader "Custom/HolofoilShader01"
         _ColorOne ("Color One", Color) = (1, 1, 1, 1)
         _ColorTwo ("Color Two", Color) = (1, 1, 1, 1)
         _ColorThree ("Color Three", Color) = (1, 1, 1, 1)
+        _MaskColor ("Mask Color", Color) = (0,0,0,1) // Default to black
+        _MaskThreshold ("Mask Threshold", Range(0,1)) = 0.1
     }
     SubShader
     {
@@ -38,6 +40,8 @@ Shader "Custom/HolofoilShader01"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _MaskColor;
+            float _MaskThreshold;
 
             sampler2D _HoloFoilTex;
             float _Scale, _Intensity;
@@ -73,11 +77,16 @@ Shader "Custom/HolofoilShader01"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 foil = tex2D(_HoloFoilTex, i.uv);
-                float2 newUV = i.viewDir.xy + foil.rg;
-                float3 plasma = Plasma(newUV) * _Intensity;
                 fixed4 col = tex2D(_MainTex, i.uv);
-                return fixed4(col.rgb + col.rgb * plasma.rgb, 1);
+
+                // Mask out pixels based on the specified color and threshold
+                float delta = length(col.rgb - _MaskColor.rgb);
+                clip(delta - _MaskThreshold);
+                
+                float2 newUV = i.viewDir.xy + col.rg;
+                float3 plasma = Plasma(newUV) * _Intensity;
+                fixed4 cols = tex2D(_MainTex, i.uv);
+                return fixed4(cols.rgb + cols.rgb * plasma.rgb, 1);
             }
             ENDCG
         }
