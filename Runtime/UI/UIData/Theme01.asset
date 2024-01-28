@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b79142d7e3d49b98727059fb3e7e9b, type: 3}
   m_Name: Theme01
   m_EditorClassIdentifier: 
-  Primary_bg: {r: 0, g: 0.13914871, b: 1, a: 1}
-  Primary_text: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  Primary_bg: {r: 0.16470589, g: 0.15686275, b: 0.3018868, a: 1}
+  Primary_text: {r: 1, g: 1, b: 1, a: 1}
+  Primary_font: {fileID: 11400000, guid: fdcca33690f11904184757148b038bbb, type: 2}
   Secondary_bg: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
   Secondary_text: {r: 0.4339623, g: 0.034798868, b: 0.42313844, a: 1}
-  Tirtiary_bg: {r: 0.3773585, g: 0, b: 0.123485714, a: 1}
-  Tirtiary_text: {r: 0.2830189, g: 0.01735494, b: 0.01735494, a: 1}
-  disable: {r: 0, g: 0.86362004, b: 0.9528302, a: 1}
+  Secondary_font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  Tirtiary_bg: {r: 1, g: 0, b: 0.7908478, a: 1}
+  Tirtiary_text: {r: 0.088113785, g: 1, b: 0, a: 1}
+  Tirtiary_font: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  CallToAction_bg: {r: 1, g: 0, b: 0, a: 1}
+  CallToAction_text: {r: 1, g: 1, b: 1, a: 1}
+  CallToActin_font: {fileID: 11400000, guid: fdcca33690f11904184757148b038bbb, type: 2}
+  disable: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}

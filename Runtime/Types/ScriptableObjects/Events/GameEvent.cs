@@ -11,7 +11,6 @@ namespace Plugins.SystemsLibrary.Runtime.Types.ScriptableObjects.Events
 
         public void Raise()
         {
-            Debug.Log(listeners.Count);
             for (int i = listeners.Count - 1; i >= 0; i-- )
             {
                 listeners[i].OnEventRaised();

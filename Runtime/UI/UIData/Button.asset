@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Button
   m_EditorClassIdentifier: 
   theme: {fileID: 11400000, guid: 0f68c404875624f3ead56d1c92544ed2, type: 2}
+  font: {fileID: 11400000, guid: fdcca33690f11904184757148b038bbb, type: 2}
+  size: 100

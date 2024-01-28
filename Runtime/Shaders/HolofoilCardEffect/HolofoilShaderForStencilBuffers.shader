@@ -1,4 +1,4 @@
-Shader "Custom/HolofoilShader02"
+Shader "Custom/HolofoilShaderForStencil"
 {
     Properties
     {
@@ -11,11 +11,19 @@ Shader "Custom/HolofoilShader02"
         _ColorOne ("Color One", Color) = (1, 1, 1, 1)
         _ColorTwo ("Color Two", Color) = (1, 1, 1, 1)
         _ColorThree ("Color Three", Color) = (1, 1, 1, 1)
+        _MaskColor ("Mask Color", Color) = (0,0,0,1) // Default to black
+        _MaskThreshold ("Mask Threshold", Range(0,1)) = 0.1
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+
+        Stencil
+        {
+            Ref 1
+            Comp equal
+        }
 
         Pass
         {
@@ -40,6 +48,8 @@ Shader "Custom/HolofoilShader02"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _MaskColor;
+            float _MaskThreshold;
 
             sampler2D _HoloFoilTex;
             sampler2D _RippleTex;
@@ -59,7 +69,7 @@ Shader "Custom/HolofoilShader02"
             float3 Plasma(float2 uv)
             {
                 uv = uv * _Scale - _Scale / 2;
-                //float time = _Time.y; // Assuming you want to use the built-in time variable
+                // float time = _Time.y; // Uncomment this to use the built-in time variable
                 float time = 0;
 
                 float w1 = sin(uv.x + time);
@@ -83,11 +93,17 @@ Shader "Custom/HolofoilShader02"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                fixed4 col = tex2D(_MainTex, i.uv);
+
+                // Mask out pixels based on the specified color and threshold
+                float delta = length(col.rgb - _MaskColor.rgb);
+                clip(delta - _MaskThreshold);
+
                 fixed4 foil = tex2D(_HoloFoilTex, i.uv);
                 float2 rippleUV = RippleEffect(i.uv);
                 float2 newUV = i.viewDir.xy + foil.rg + rippleUV;
                 float3 plasma = Plasma(newUV) * _Intensity;
-                fixed4 col = tex2D(_MainTex, i.uv);
+
                 return fixed4(col.rgb + col.rgb * plasma.rgb, 1);
             }
             ENDCG
