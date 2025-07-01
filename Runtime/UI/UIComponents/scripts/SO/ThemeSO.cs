@@ -15,7 +15,7 @@ public class ThemeSO : ScriptableObject
     public Color Secondary_text;
     public TMP_FontAsset Secondary_font;
     
-    [Header("Tirtiary")] 
+    [Header("Tertiary")]
     public Color Tirtiary_bg;
     public Color Tirtiary_text;
     public TMP_FontAsset Tirtiary_font;
