@@ -24,7 +24,8 @@ namespace Plugins.SystemsLibrary.Runtime.UI.UIComponents.scripts
 
         private void OnValidate()
         {
-            if (!OverrideStyle) Init();
+            if (OverrideStyle)
+                Init();
         }
     }
 }
